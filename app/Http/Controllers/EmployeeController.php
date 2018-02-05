@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use Session;
+use Excel;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateEmployee;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
@@ -36,42 +38,40 @@ class EmployeeController extends Controller
         return view('auth.register');
     }
 
-        // protected function validator(array $data)
-        // {
-        //     return Validator::make($data, [
-        //         'fname' => 'required|max:255',
-        //         'lastname' => 'required|max:255',
-        //         'email' => 'required|email|max:255',
-        //         'username' => 'required|max:255|unique:employee',
-        //         'password' => 'required|min:6|confirmed',
-        //     ]);
-        // }
+    protected function store(CreateEmployee $request)
+    {            
+        $request['password'] = Hash::make($request['password']);
 
-        /**
-         * Create a new user instance after a valid registration.
-         *
-         * @param  array  $data
-         * @return User
-         */
-        protected function register(Request $request)
-        {
+        User::create($request->all());
 
-        // $validate = $request->validate([
-        //         'fname' => 'required|max:255',
-        //         'lastname' => 'required|max:255',
-        //         'email' => 'required|email|max:255',
-        //         'username' => 'required|max:255|unique:employee',
-        //         'password' => 'required|min:6|confirmed',
-        //     ]);
+        Session::flash('success','Account successfully created.');
 
-             User::create([
-                'fname' => $request['fname'],
-                'lastname' => $request['lastname'],
-                'username' => $request['username'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-        return redired()->route('employee.index');
+        return redirect()->route('employee.index');
+    }
+
+    protected function getUpload()
+    {
+        return view('add-timelog');
+    }
+
+    protected function postUpload(Request $request)
+    {
+
+        Excel::load($request->file('file'), function($data) {
+
+            $results = $data->get();
+
+            dd($results['items']);
+            //  echo '<pre>';
+            // foreach ($results as $result) {
+            //     print_r($result->items);
+            // }
+           
+           
+
+
+        });
+
     }
 
 }

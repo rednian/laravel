@@ -10,6 +10,7 @@
 
         </div>
         <a href="{{route('employee.create')}}" class="btn btn-success">Add New Employee</a>
+        @include('include.message')
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -29,18 +30,21 @@
                         <td>{{$user['email']}}</td>
                         <td>{{$user['username']}}</td>
                         <td>
-                            <div class="dropdown">
-                              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                action
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dLabel">
-                               <li> <a href="#" class="btn btn-link btn-xs"><span class="fa fa-folder"></span></a></li>
-                               <li><a href="#" class="btn btn-link btn-xs"><span class="fa fa-trash"></span></a></li>
-                               <li><a href="#" class="btn btn-link btn-xs"><span class="fa fa-pencil"></span></a></li>
-                    
-                              </ul>
-                            </div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="{{route('employee.upload')}}"><span class="fa fa-folder"></span> upload logs</a>
+                              </li>
+                              <li><a href="#"><span class="fa fa-trash"></span> delete</a>
+                              </li>
+                              <li><a href="#"><span class="fa fa-pencil"></span> update</a>
+                              </li>
+                            </ul>
+                          </div>
                         </td>
                     </tr>
                     <?php $x++; ?>
