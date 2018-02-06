@@ -26,7 +26,7 @@
                <?php foreach($users as $user): ?>
 
                 <?php $id = $user->id; ?>
-
+  
                     <tr>
                         <td>{{$x}}</td>
                         <td>{{ucwords($user['fname']).' '.ucwords($user['lastname'])}}</td>
