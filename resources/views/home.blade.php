@@ -24,10 +24,9 @@
             <tbody>
                 <?php $x =1; ?>
                <?php foreach($users as $user): ?>
-<<<<<<< HEAD
-=======
+
                 <?php $id = $user->id; ?>
->>>>>>> e4991d274c720c76de4a6800d53509eec14180a0
+
                     <tr>
                         <td>{{$x}}</td>
                         <td>{{ucwords($user['fname']).' '.ucwords($user['lastname'])}}</td>
@@ -41,11 +40,8 @@
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-<<<<<<< HEAD
-                              <li><a href="{{route('employee.upload')}}"><span class="fa fa-folder"></span> upload logs</a>
-=======
+
                               <li><a href="{{url('employee/upload/'.$id)}}"><span class="fa fa-folder"></span> upload logs</a>
->>>>>>> e4991d274c720c76de4a6800d53509eec14180a0
                               </li>
                               <li><a href="#"><span class="fa fa-trash"></span> delete</a>
                               </li>
