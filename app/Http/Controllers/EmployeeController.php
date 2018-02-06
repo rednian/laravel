@@ -56,8 +56,10 @@ class EmployeeController extends Controller
     protected function getUpload()
     {
 
-        $log = new Logs();
-        $users = $log->user();
+        $users = User::find(8)->load('logs');
+        // $users = $log->log;
+
+        // dd($log);
 
         return view('add-timelog', compact('users'));
     }
@@ -68,7 +70,7 @@ class EmployeeController extends Controller
 
     
         $collection =Excel::load($request->file('file'), function($reader) {})->all()->toArray();
-        
+        dd($collection);
 
         $data = array();
 

@@ -30,9 +30,9 @@ class User extends Authenticatable
     ];
 
 
-    public function log()
+    public function logs()
     {
-        return $this->hasMany(Logs::class, 'l_id');
+        return $this->hasMany(Logs::class, 'id');
         
     }
 }
