@@ -58,8 +58,8 @@
              @foreach($users->logs as $log)
              <tr>
                <td>{{$log->date}}</td>
-               <td>{{$log->time_in}}</td>
-               <td>{{$log->time_out}}</td>
+               <td>{{date("h:i a", strtotime($log->time_in))}}</td>
+               <td>{{date("h:i a", strtotime($log->time_out))}}</td>
              </tr>
              @endforeach
              {{-- @endforeach --}}

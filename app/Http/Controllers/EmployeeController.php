@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Excel;
 use App\User;
-
+use Carbon\Carbon;
 use App\Year;
 use App\Month;
 use App\Logs;
@@ -91,11 +91,14 @@ class EmployeeController extends Controller
             $date = explode(' ',$d['name_date']);
             $date = $date[0];
 
+            // $time_in = new Carbon($d['time_in'])->()->;
+            // $time_in->format();
+
             Logs::create([
                 'id'=>$request->id,
                 'date'=>$date,
-                'time_in'=>$d['time_in'],
-                'time_out'=>$d['time_out'],
+                'time_in'=>date("H:i", strtotime($d['time_in'])),
+                'time_out'=>date("H:i", strtotime($d['time_out'])),
             ]);
         }
 
