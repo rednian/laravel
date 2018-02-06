@@ -53,13 +53,13 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index');
     }
 
-    protected function getUpload()
+    protected function getUpload($id)
     {
-
-        $users = User::find(8)->load('logs');
+        // dd($id);
+        $users = User::find($id)->load('logs');
         // $users = $log->log;
 
-        // dd($log);
+        // dd($users);
 
         return view('add-timelog', compact('users'));
     }
@@ -70,7 +70,7 @@ class EmployeeController extends Controller
 
     
         $collection =Excel::load($request->file('file'), function($reader) {})->all()->toArray();
-        dd($collection);
+      
 
         $data = array();
 

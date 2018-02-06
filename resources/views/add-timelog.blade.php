@@ -54,6 +54,7 @@
              </tr>
            </thead>
            <tbody>
+            {{-- @foreach($users as $user) --}}
              @foreach($users->logs as $log)
              <tr>
                <td>{{$log->date}}</td>
@@ -61,6 +62,7 @@
                <td>{{$log->time_out}}</td>
              </tr>
              @endforeach
+             {{-- @endforeach --}}
            </tbody>
         </table>
       </div>
