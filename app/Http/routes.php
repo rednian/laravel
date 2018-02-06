@@ -20,7 +20,7 @@
     Route::get('/', 'EmployeeController@index')->name('employee.index');
     Route::get('/employee/create', 'EmployeeController@create')->name('employee.create');
     Route::post('/employee/store', 'EmployeeController@store')->name('employee.store');
-    Route::get('/employee/upload', 'EmployeeController@getUpload')->name('employee.upload');
+    Route::get('/employee/upload/{id}', 'EmployeeController@getUpload')->name('employee.upload');
     Route::post('/employee/upload', 'EmployeeController@postUpload')->name('employee.upload');
   
   });

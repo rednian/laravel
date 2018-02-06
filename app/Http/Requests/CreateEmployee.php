@@ -26,9 +26,9 @@ class CreateEmployee extends Request
         return [
                 'fname' => 'required|min:3|max:255',
                 'lastname' => 'required|min:3|max:255',
-                'email' => 'required|email|max:255',
-                'username' => 'required|min:3|max:255|unique:employee',
-                'password' => 'required|different:username|min:6|confirmed',
+                'email' => 'email|max:255',
+                'username' => 'min:3|max:255',
+                'password' => 'different:username|min:6|confirmed',
             ];
     }
 }

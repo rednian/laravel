@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Session;
 use Excel;
 use App\User;
+
+use App\Year;
+use App\Month;
+use App\Logs;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEmployee;
@@ -51,27 +55,49 @@ class EmployeeController extends Controller
 
     protected function getUpload()
     {
-        return view('add-timelog');
+
+        $log = new Logs();
+        $users = $log->user();
+
+        return view('add-timelog', compact('users'));
     }
 
     protected function postUpload(Request $request)
     {
 
-        Excel::load($request->file('file'), function($data) {
 
-            $results = $data->get();
+    
+        $collection =Excel::load($request->file('file'), function($reader) {})->all()->toArray();
+        
 
-            dd($results['items']);
-            //  echo '<pre>';
-            // foreach ($results as $result) {
-            //     print_r($result->items);
-            // }
-           
-           
+        $data = array();
 
+        foreach ($collection as $row) {
+            
+            array_push($data, $row[2]);
+            array_push($data, $row[3]);
+            array_push($data, $row[4]);
+            array_push($data, $row[5]);
+            array_push($data, $row[6]);
+            array_push($data, $row[7]);
+            array_push($data, $row[8]);
+            
+        }
 
-        });
+        foreach ($data as $d) {
+            
+            $date = explode(' ',$d['name_date']);
+            $date = $date[0];
 
+            Logs::create([
+                'id'=>$request->id,
+                'date'=>$date,
+                'time_in'=>$d['time_in'],
+                'time_out'=>$d['time_out'],
+            ]);
+        }
+
+        return redirect()->back();
     }
 
 }
