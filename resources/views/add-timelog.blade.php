@@ -2,15 +2,18 @@
 @section('content')
 <?php $id = \Request::segment(3); 
 ?>
-
+    
     <section class="row">
+
       <div class="col-md-4">
+
         <section class="panel-default">
           <div class="panel-heading"><h3 class="panel-title">Upload Logs</h3></div>
           <div class="panel-body">
-            
+        
             <form class="form" method="post" enctype="multipart/form-data" action="{{route('employee.upload')}}">
-              <!-- <div class="form-group">
+              <!-- <div class="form-group
+              ">
                 <label>Month</label>
                 <select class="form-control">
                   <option value="january">January</option>
@@ -43,7 +46,8 @@
       </div>
     </section>
     <section class="row">
-      <div class="col">
+      <div class="col-md-12">
+          @include('include.success');
         <table class="table">
            <thead>
              <tr>

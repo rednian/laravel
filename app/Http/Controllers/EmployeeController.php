@@ -91,8 +91,6 @@ class EmployeeController extends Controller
             $date = explode(' ',$d['name_date']);
             $date = $date[0];
 
-            // $time_in = new Carbon($d['time_in'])->()->;
-            // $time_in->format();
 
             Logs::create([
                 'id'=>$request->id,
@@ -101,6 +99,7 @@ class EmployeeController extends Controller
                 'time_out'=>date("H:i", strtotime($d['time_out'])),
             ]);
         }
+        Session::flash('success','Logs successfully uploaded.');
 
         return redirect()->back();
     }
