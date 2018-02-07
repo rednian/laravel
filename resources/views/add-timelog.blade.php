@@ -47,7 +47,8 @@
     </section>
     <section class="row">
       <div class="col-md-12">
-          @include('include.success');
+          @include('include.success')
+          @include('include.error')
         <table class="table">
            <thead>
              <tr>

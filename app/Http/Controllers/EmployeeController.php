@@ -67,7 +67,9 @@ class EmployeeController extends Controller
     protected function postUpload(Request $request)
     {
 
-
+        $this->validate($request, [
+               'file' => 'required|file',
+           ]);
     
         $collection =Excel::load($request->file('file'), function($reader) {})->all()->toArray();
       
